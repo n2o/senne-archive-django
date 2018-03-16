@@ -1,6 +1,5 @@
 {% load staticfiles %}
 
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -34,7 +33,12 @@
   </div>
 </nav>
 
-<h1>Hello, world!</h1>
+<div class="container" style="padding-top: 1rem;">
+  <h1>Hello, world!</h1>
+</div>
+
+<script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
 </body>
 </html>

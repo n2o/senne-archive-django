@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'senne',
     'markdownx',
     'archive',
+    'reversion',
 ]
 
 MIDDLEWARE = [
