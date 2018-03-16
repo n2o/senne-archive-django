@@ -1,0 +1,14 @@
+{
+  "name": "senne-archive",
+  "version": "0.0.1",
+  "description": "Digital Archive for Nature Conservation Foundation Senne",
+  "repository": "git@github.com:n2o/web-skeleton.git",
+  "author": "Christian Meter <cmeter@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "popper.js": "^1.12.9",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1"
+  }
+}
