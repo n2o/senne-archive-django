@@ -81,6 +81,6 @@ local_settings.py
 
 .env
 db.sqlite3
-*.lock
+yarn.lock
 node_modules/
 .idea/
