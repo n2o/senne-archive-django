@@ -1,1 +1,74 @@
 {% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+  <div class="container" style="padding-top: 1rem;">
+    <div class="row">
+      <div class="col-8">
+        <img src="{% static 'img/senne_fruehling.jpg' %}" alt="Senne Frühling"
+             class="img-fluid material-card material-card-2">
+      </div>
+      <div class="col-4">
+        <img src="{% static 'img/logo_senne_mit_hintergrund.jpg' %}" alt="Senne Logo mit Hintergrund" class="img-fluid">
+        <br> <br> <br>
+        <img src="{% static 'img/senne_duene.jpg' %}" alt="Senne Logo mit Hintergrund" class="img-fluid">
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div>
+      <div class="text-center">
+
+        <h2>Über uns</h2>
+        <div class="underline-small"></div>
+        <p class="lead">
+          {% lorem 10 w random %}
+          <br>
+          {% lorem 10 w random %}
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <p>{% lorem 2 p %}</p>
+        </div>
+        <div class="col-4">
+          <p>
+            <br>
+            <img src="{% static 'img/senne_spinnennetze.jpg' %}" alt="Senne"
+                 class="img-fluid material-card material-card-2">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div>
+      <div class="text-center">
+
+        <h2>Was wir wollen</h2>
+        <div class="underline-small"></div>
+        <p class="lead">
+          {% lorem 10 w random %}
+          <br>
+          {% lorem 10 w random %}
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p>
+            <br>
+            <img src="{% static 'img/senne_wiese.jpg' %}" alt="Senne" class="img-fluid material-card material-card-2">
+          </p>
+        </div>
+        <div class="col-8">
+          <p>
+            {% lorem 2 p %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
