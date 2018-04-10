@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+  <h1>Archiv</h1>
+  <p class="lead">
+    Willkommen in unserem digitalen Archiv. Hier werden viele Dokumente zur Verfügung gestellt, die über die Suchmaske
+    abgerufen werden können. Probieren Sie es einfach aus!
+  </p>
+
+  <br>
+
+  <form action="" method="get">
+    <input class="form-control form-control-lg" type="text" placeholder="Senne, Naturschutzverein, ...">
+    <input class="btn" type="submit" value="Submit"/>
+  </form>
+
+{% endblock %}
