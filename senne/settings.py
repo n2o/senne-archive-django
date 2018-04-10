@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'senne',
-    'markdownx',
     'archive',
+
+    'markdownx',
     'reversion',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
