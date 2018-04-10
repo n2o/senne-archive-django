@@ -84,3 +84,6 @@ db.sqlite3
 yarn.lock
 node_modules/
 .idea/
+
+*.css
+*.css.map
