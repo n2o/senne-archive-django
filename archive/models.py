@@ -6,6 +6,7 @@ from django.db import models
 
 class Item(models.Model):
     medart_choices = (
+        ("Artikel", "Artikel"),
         ("Audiodatei", "Audiodatei"),
         ("Buch", "Buch"),
         ("CD / DVD", "CD / DVD"),
@@ -33,7 +34,7 @@ class Item(models.Model):
     abstract = models.TextField("Abstract", blank=True)
     year = models.IntegerField("Jahrgang", null=True, default=datetime.now().year, blank=True)
     number = models.CharField("Nummer", max_length=256, blank=True)
-    source_datetime = models.DateTimeField("Datum", blank=True)
+    source_date = models.DateField("Veröffentlichungsdatum", blank=True, null=True)
     pages = models.CharField("Seiten", max_length=256, blank=True)
     notes = models.TextField("Anmerkungen", blank=True)
     place = models.CharField("Ort / Veröffentlichung", max_length=256, blank=True)

@@ -7,7 +7,7 @@ from .models import Item
 @admin.register(Item)
 class ItemAdmin(VersionAdmin):
     list_display = ('title', 'author', 'medart', 'public', 'modified')
-    list_filter = ['medart', 'source_datetime']
+    list_filter = ['medart', 'source_date']
     search_fields = ['title', 'author']
     save_as = True
     readonly_fields = ['created', 'modified']
@@ -21,10 +21,10 @@ class ItemAdmin(VersionAdmin):
         ('Quelle',
          {'fields': [
              'source_title', 'amount',
-             'medart', 'location',
-             ('year', 'source_datetime', 'number'),
+             'medart', 'location', 'owner',
+             ('year', 'source_date', 'number'),
              ('pages', 'place'),
-             'notes', 'owner'
+             'notes'
          ]}),
         ('Abstract',
          {'fields': [

@@ -12,8 +12,93 @@
   <br>
 
   <form action="" method="get">
-    <input class="form-control form-control-lg" type="text" placeholder="Senne, Naturschutzverein, ...">
-    <input class="btn" type="submit" value="Submit"/>
+    <div class="input-group">
+      <input class="form-control form-control-lg" type="text" name="q"
+             placeholder="Senne, Naturschutzverein, ..." value={{ request.GET.q }}>
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Suchen</button>
+      </div>
+    </div>
   </form>
+
+  <div class="spacer"></div>
+
+  {% if items %}
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titel</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Medienart</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for item in items %}
+        <tr>
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.title }}</td>
+          <td>{{ item.author }}</td>
+          <td>{{ item.medart }}</td>
+          <td class="text-right">
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                    data-target="#details-item-{{ item.id }}">
+              Details
+            </button>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  <!-- Modal -->
+  {% for item in items %}
+    <div class="modal fade" id="details-item-{{ item.id }}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-8">
+                <p>Titel: {{ item.title }}</p>
+                <p>Autor: {{ item.author }}</p>
+                <p>Rolle: {{ item.role }}</p>
+              </div>
+              <div class="col-4">
+                {% if item.image1 %}
+                  <div class="pull-right" style="float: right;">
+                    <a href="{{ item.image1.url }}">
+                      <img src="{{ item.image1.url }}" class="img-thumbnail" alt="" style="max-width: 200px">
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+            <hr>
+            <h4>Quelle</h4>
+            <p>Medienart: {{ item.medart }}</p>
+            <p>Quelltitel: {{ item.source_title }}</p>
+            <p>Abstract: {{ item.abstract }}</p>
+            <p>Jahr: {{ item.year }}</p>
+            <p>Datum: {{ item.source_datetime }}</p>
+            <p>Anmerkungen: {{ item.notes }}</p>
+            <p>Ort / Veröffentlichung: {{ item.place }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 
 {% endblock %}
