@@ -22,23 +22,34 @@
     <div>
       <div class="text-center">
 
-        <h2>Über uns</h2>
+        <h2>Archiv</h2>
         <div class="underline-small"></div>
         <p class="lead">
-          {% lorem 10 w random %}
-          <br>
-          {% lorem 10 w random %}
+          Willkommen in unserem digitalen Archiv. Hier werden viele Dokumente zur Verfügung gestellt, die über die
+          Suchmaske abgerufen werden können. Probieren Sie es einfach aus!
         </p>
       </div>
+      <br>
       <div class="row">
         <div class="col-8">
-          <p>{% lorem 2 p %}</p>
+          <p>
+            Einige Artikel, Fotos, Dokumente, die über die Jahre in unserem Archiv angesammelt wurden, möchten wir nun
+            hier zur Verfügung stellen. Sie erhalten dadurch einen Einblick in unsere Arbeit und unsere Ziele.
+          </p>
+          <p>
+            Wir würden uns freuen, wenn Sie in diesem Archiv ein wenig stöbern würden. Gerne nehmen wir auch
+            Rückmeldungen entgegen, damit wir unser Angebot weiter verbessern können.
+          </p>
+          <p>
+            <a href="{% url "archive:index" %}">Hier geht es zum Archiv</a>
+          </p>
         </div>
         <div class="col-4">
           <p>
-            <br>
-            <img src="{% static 'img/senne_spinnennetze_w400px.jpg' %}" alt="Senne"
-                 class="img-fluid material-card material-card-2">
+            <a href="{% url "archive:index" %}">
+              <img src="{% static 'img/bookshelf_w400px.jpg' %}" alt="Senne"
+                   class="img-fluid material-card material-card-2">
+            </a>
           </p>
         </div>
       </div>
@@ -48,7 +59,6 @@
 
     <div>
       <div class="text-center">
-
         <h2>Was wir wollen</h2>
         <div class="underline-small"></div>
         <p class="lead">
@@ -57,6 +67,7 @@
           {% lorem 10 w random %}
         </p>
       </div>
+      <br>
       <div class="row">
         <div class="col-4">
           <p>
@@ -72,5 +83,33 @@
         </div>
       </div>
     </div>
+
+    <div class="spacer"></div>
+
+    <div>
+      <div class="text-center">
+        <h2>Über uns</h2>
+        <div class="underline-small"></div>
+        <p class="lead">
+          {% lorem 10 w random %}
+          <br>
+          {% lorem 10 w random %}
+        </p>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-8">
+          <p>{% lorem 2 p %}</p>
+        </div>
+        <div class="col-4">
+          <p>
+            <br>
+            <img src="{% static 'img/senne_spinnennetze_w400px.jpg' %}" alt="Senne"
+                 class="img-fluid material-card material-card-2">
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 {% endblock %}
