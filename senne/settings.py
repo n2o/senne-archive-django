@@ -32,9 +32,11 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.flatpages',
+    'django.contrib.sites',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
 
     'senne',
     'archive',
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'senne.urls'
@@ -108,11 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'de-de'
 
 TIME_ZONE = 'Europe/Berlin'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
@@ -128,3 +128,5 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+SITE_ID = 1

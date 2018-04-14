@@ -24,7 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('archiv/', include('archive.urls')),
     path('', views.index, name='index')
-
     # url(r'^$', views.index, name='index'),
 
     # url(r'^markdownx/', include('markdownx.urls')),
