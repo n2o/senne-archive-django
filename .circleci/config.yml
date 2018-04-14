@@ -29,10 +29,11 @@ jobs:
             - "/usr/local/lib/python3.6/site-packages"
       - run:
           command: |
+            pipenv run "python manage.py magemigrations"
+            pipenv run "python manage.py migrate"
             pipenv run "python manage.py test"
       - store_test_results:
           path: test-results
       - store_artifacts:
           path: test-results
           destination: tr1
-
