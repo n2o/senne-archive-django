@@ -2,6 +2,10 @@
 
 {% load staticfiles %}
 
+{% block page-title %}
+  Startseite
+{% endblock %}
+
 {% block content %}
   <div class="container" style="padding-top: 1rem;">
     <div class="row">
@@ -21,24 +25,19 @@
 
     <div>
       <div class="text-center">
-
-        <h2>Archiv</h2>
+        <h2>Senne Archiv</h2>
         <div class="underline-small"></div>
         <p class="lead">
-          Willkommen in unserem digitalen Archiv. Hier werden viele Dokumente zur Verfügung gestellt, die über die
-          Suchmaske abgerufen werden können. Probieren Sie es einfach aus!
+          Willkommen im digitalen Senne Archiv der Naturschutz-Stiftung Senne.
         </p>
       </div>
       <br>
       <div class="row">
         <div class="col-8">
           <p>
-            Einige Artikel, Fotos, Dokumente, die über die Jahre in unserem Archiv angesammelt wurden, möchten wir nun
-            hier zur Verfügung stellen. Sie erhalten dadurch einen Einblick in unsere Arbeit und unsere Ziele.
-          </p>
-          <p>
-            Wir würden uns freuen, wenn Sie in diesem Archiv ein wenig stöbern würden. Gerne nehmen wir auch
-            Rückmeldungen entgegen, damit wir unser Angebot weiter verbessern können.
+            Hier werden Dokumente, Fotos, Karten, Links zum Thema Senne zur Verfügung gestellt,
+            die über die Suchmaske abgerufen werden können.
+            Probieren Sie es einfach aus!
           </p>
           <p>
             <a href="{% url "archive:index" %}">Hier geht es zum Archiv</a>
@@ -62,23 +61,36 @@
         <h2>Was wir wollen</h2>
         <div class="underline-small"></div>
         <p class="lead">
-          {% lorem 10 w random %}
-          <br>
-          {% lorem 10 w random %}
+          Wir haben in der Bibliothek der Biologischen Station Kreis Paderborn-Senne gestöbert,
+          die Sammlungen von Senne Experten durchforstet, die Archive von Senne-Fotografen gesichtet und Senne-relevante
+          Links in die Bibliotheks-Software eingepflegt.
         </p>
       </div>
       <br>
       <div class="row">
         <div class="col-4">
           <p>
-            <br>
             <img src="{% static 'img/senne_wiese_w400px.jpg' %}" alt="Senne"
                  class="img-fluid material-card material-card-2">
           </p>
         </div>
         <div class="col-8">
           <p>
-            {% lorem 2 p %}
+            Das Ergebnis ist eine subjektive Auswahl von Artikeln, Büchern, Fotos, die Senne betreffend, die eingescannt
+            wurden und nun online einsehbar sind.
+          </p>
+          <p>
+            Selbstverständlich ist dieses Archiv weit davon entfernt einen vollständigen Überblick über Senne-relevante
+            Themen zu geben, deshalb wird es kontinuierlich weiter gepflegt.
+          </p>
+          <p>
+            Die Redaktion des Senne Archivs ist dankbar für Rückmeldungen und Hinweise auf weitere, die Senne
+            betreffende, Quellen: <a href="mailto:Naturschutz-Stiftung-Senne@online.de">Naturschutz-Stiftung-Senne@online.de</a>
+          </p>
+          <p>
+            Sämtliche Autoren sind angeschrieben und um Erlaubnis für die Online-Stellung gebeten worden. Sollten
+            irgendwelche Rechte verletzt sein, bitten wir um kurze Rückmeldung. Selbstverständlich entfernen wir den
+            Beitrag dann aus dem Archiv.
           </p>
         </div>
       </div>
@@ -91,19 +103,33 @@
         <h2>Über uns</h2>
         <div class="underline-small"></div>
         <p class="lead">
-          {% lorem 10 w random %}
-          <br>
-          {% lorem 10 w random %}
+          Die Naturschutz-Stiftung Senne ist eine gemeinnützige, selbständige,<br>rechtsfähige Stiftung im Sinne des §2
+          Abs.1 StiftG NW. Sie ist sowohl operativ als auch fördernd tätig.
         </p>
       </div>
       <br>
       <div class="row">
         <div class="col-8">
-          <p>{% lorem 2 p %}</p>
+          <p>
+            Zweck der Naturschutz-Stiftung Senne ist die Förderung des Natur- und Landschaftsschutzes in der Senne und
+            im Paderborner Land.
+          </p>
+          <p>
+            Das geschieht insbesondere durch
+          </p>
+          <ul>
+            <li>Förderung von Maßnahmen des Naturschutzes und der Landschaftspflege</li>
+            <li>Kauf oder Pacht von Flächen für den Naturschutz</li>
+            <li>Förderung der Erhebung biologisch/ökologischer Grundlagendaten</li>
+            <li>Unterstützung von informativer Öffentlichkeitsarbeit</li>
+            <li>Umwelbildung</li>
+          </ul>
+          <p>
+            Weitere Informationen unter http://www.naturschutz-stiftung-senne.de/
+          </p>
         </div>
         <div class="col-4">
           <p>
-            <br>
             <img src="{% static 'img/senne_spinnennetze_w400px.jpg' %}" alt="Senne"
                  class="img-fluid material-card material-card-2">
           </p>

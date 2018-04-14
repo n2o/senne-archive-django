@@ -6,20 +6,24 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <meta name="description" content="">
   <meta name="author" content="">
 
   <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
 
-  <title>Senne Naturschutzverein</title>
+  <title>
+    Naturschutz-Stiftung Senne ::
+    {% block page-title %}{% endblock %}
+  </title>
 </head>
 
 <body role="document">
 
-<div class="header text-center" style="padding-top: 2rem;">
-  <h1>Senne-Archiv</h1>
+<div id="site-header-wrapper" class="text-center">
+  <span id="site-header">
+    Senne Archiv
+  </span>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -45,34 +49,16 @@
   </div>
 </nav>
 
-<style>
-  .underline {
-    border-top: 1px solid #299549;
-    width: 600px;
-    margin: 0.5em auto 0;
-    padding-bottom: 3em;
-  }
-
-  .underline-small {
-    border-top: 1px solid #299549;
-    width: 200px;
-    margin: 0.5em auto 0;
-    padding-bottom: 2em;
-  }
-
-  .spacer {
-    padding: 2rem 0;
-  }
-</style>
-
 <div class="underline"></div>
 
 <div id="content" class="container">
+  <div class="page-header">
+    <h1>{% block page-header %}{% endblock %}</h1>
+  </div>
+
   {% block content %}
   {% endblock %}
 </div>
-
-<div style="padding-bottom: 2rem;"></div>
 
 <script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
 <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
