@@ -1,1 +1,30 @@
+@import "colors"
 @import "common"
+
+a
+  &:link
+    color: $primary-color
+  &:visited
+    color: $primary-color
+  &:hover
+    color: $primary-color
+    text-decoration: underline
+  &:active
+    color: $primary-color
+
+.btn-primary
+  background-color: $primary-color
+  border-color: $primary-color
+  &:hover
+    background-color: $primary-color-dark
+    border-color: $primary-color-dark
+
+.form-control
+  border-color: $primary-color
+  &:active
+    border-color: $primary-color
+
+#site-header-wrapper
+  padding-top: 2rem
+  #site-header
+    font-size: 2rem
