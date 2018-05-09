@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load staticfiles %}
+{% load senne_common %}
 
 {% block page-title %}
   Archiv
@@ -67,7 +68,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{ item.title }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -75,15 +76,15 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-8">
-                <p>Titel: {{ item.title }}</p>
-                <p>Autor: {{ item.author }}</p>
-                <p>Rolle: {{ item.role }}</p>
+                {{ item.author|html_paragraph_if_field_exists:"Autor"|safe }}
+                {{ item.role|html_paragraph_if_field_exists:"Rolle"|safe }}
               </div>
               <div class="col-4">
                 {% if item.image1 %}
                   <div class="pull-right" style="float: right;">
                     <a href="{{ item.image1.url }}">
-                      <img src="{{ item.image1.url }}" class="img-thumbnail" alt="" style="max-width: 200px">
+                      <img src="{{ item.image1.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                           style="max-width: 200px">
                     </a>
                   </div>
                 {% endif %}
@@ -91,13 +92,13 @@
             </div>
             <hr>
             <h4>Quelle</h4>
-            <p>Medienart: {{ item.medart }}</p>
-            <p>Quelltitel: {{ item.source_title }}</p>
-            <p>Abstract: {{ item.abstract }}</p>
-            <p>Jahr: {{ item.year }}</p>
-            <p>Datum: {{ item.source_datetime }}</p>
-            <p>Anmerkungen: {{ item.notes }}</p>
-            <p>Ort / Veröffentlichung: {{ item.place }}</p>
+            {{ item.medart|html_paragraph_if_field_exists:"Medienart"|safe }}
+            {{ item.source_title|html_paragraph_if_field_exists:"Quelltitel"|safe }}
+            {{ item.abstract|html_paragraph_if_field_exists:"Abstract"|safe }}
+            {{ item.year|html_paragraph_if_field_exists:"Jahr"|safe }}
+            {{ item.source_datetime|html_paragraph_if_field_exists:"Datum"|safe }}
+            {{ item.notes|html_paragraph_if_field_exists:"Anmerkungen"|safe }}
+            {{ item.place|html_paragraph_if_field_exists:"Ort / Veröffentlichung"|safe }}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
