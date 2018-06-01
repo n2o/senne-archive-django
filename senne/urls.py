@@ -16,9 +16,9 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.flatpages import views as flatepageviews
 from django.urls import path, include
 
+from pages import views as pviews
 from senne import views
 
 urlpatterns = [
@@ -26,8 +26,7 @@ urlpatterns = [
     path('archiv/', include('archive.urls')),
     path('', views.index, name='index'),
 
-    # At last use a catchall phrase for flatpages
-    path('<path:url>', flatepageviews.flatpage, name='flatpage'),
+    path('<path:url>', pviews.page, name='pages'),
 ]
 
 if settings.DEBUG:

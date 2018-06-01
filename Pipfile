@@ -5,12 +5,13 @@ name = "pypi"
 
 [packages]
 django = "*"
-django-markdownx = "*"
 markdown = "==2.6.11"
 pillow = "==5.0.0"
 pytz = "==2018.3"
 django-reversion = "*"
 sorl-thumbnail = "*"
+django-pagedown = "*"
+django-markdown-deux = "*"
 
 [dev-packages]
 

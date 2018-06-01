@@ -89,3 +89,4 @@ node_modules/
 *.css.map
 migrations
 media/
+static/
