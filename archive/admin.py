@@ -32,6 +32,7 @@ class ItemAdmin(VersionAdmin):
          ]}),
         ('Dateien',
          {'fields': [
+             ('digital_reference'),
              ('file1', 'file2', 'file3'),
              ('image1', 'image2', 'image3'),
          ]}),
