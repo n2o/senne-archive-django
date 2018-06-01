@@ -85,7 +85,7 @@ class Item(models.Model):
     location = models.CharField("Standort (analoges Archiv)", max_length=256, blank=True, null=True)
     amount = models.IntegerField("Anzahl / Exemplare", default=1, blank=True, null=True)
     owner = models.CharField("Besitzer", max_length=256, blank=True, null=True)
-    public = models.BooleanField("Veröffentlichen?", default=False)
+    public = models.BooleanField("Veröffentlichen?", default=True)
 
     digital_reference = models.URLField("Digitalreferenz (URL)", blank=True, null=True)
 
