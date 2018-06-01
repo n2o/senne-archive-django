@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 {% load senne_common %}
+{% load admin_urls %}
 
 {% block page-title %}
   Archiv
@@ -38,13 +39,13 @@
         <th scope="col">Titel</th>
         <th scope="col">Autor</th>
         <th scope="col">Medienart</th>
-        <th scope="col"></th>
+        <th scope="col" {% if user.is_staff %}width="15%"{% endif %}></th>
       </tr>
       </thead>
       <tbody>
       {% for item in items %}
         <tr>
-          <th scope="row">{{ item.id }}</th>
+          <th scope="row">{{ forloop.counter }}</th>
           <td>{{ item.title }}</td>
           <td>{{ item.author }}</td>
           <td>{{ item.medart }}</td>
@@ -53,6 +54,11 @@
                     data-target="#details-item-{{ item.id }}">
               Details
             </button>
+            {% if user.is_staff %}
+              <a type="button" class="btn btn-info btn-sm" href="{% url "admin:archive_item_change" item.id %}">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a>
+            {% endif %}
           </td>
         </tr>
       {% endfor %}
@@ -88,8 +94,39 @@
                     </a>
                   </div>
                 {% endif %}
+                {% if item.image2 %}
+                  <div class="pull-right" style="float: right;">
+                    <a href="{{ item.image2.url }}">
+                      <img src="{{ item.image2.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                           style="max-width: 200px">
+                    </a>
+                  </div>
+                {% endif %}
+                {% if item.image3 %}
+                  <div class="pull-right" style="float: right;">
+                    <a href="{{ item.image3.url }}">
+                      <img src="{{ item.image3.url }}" class="img-thumbnail" alt="{{ item.title }}"
+                           style="max-width: 200px">
+                    </a>
+                  </div>
+                {% endif %}
               </div>
             </div>
+
+            {% if item.file1 or item.file2 or item.file3 %}
+              <hr>
+              <h4>Dateien</h4>
+              {% if item.file1 %}
+                <a href="{{ item.file1.url }}">{{ item.file1.name|get_extension|fa_attachment|safe }} {{ item.file1.name|extract_filename }}</a>
+              {% endif %}
+              {% if item.file2 %}
+                <a href="{{ item.file2.url }}">{{ item.file2.name|get_extension|fa_attachment|safe }} {{ item.file2.name|extract_filename }}</a>
+              {% endif %}
+              {% if item.file3 %}
+                <a href="{{ item.file3.url }}">{{ item.file3.name|get_extension|fa_attachment|safe }} {{ item.file3.name|extract_filename }}</a>
+              {% endif %}
+            {% endif %}
+
             <hr>
             <h4>Quelle</h4>
             {{ item.medart|html_paragraph_if_field_exists:"Medienart"|safe }}
