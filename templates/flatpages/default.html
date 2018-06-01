@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load senne_common %}
+
+{% block page-title %}
+  {{ flatpage.title }}
+{% endblock %}
+
+{% block page-header %}
+  {{ flatpage.title }}
+{% endblock %}
+
+{% block content %}
+  {{ flatpage.content }}
+{% endblock %}
