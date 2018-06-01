@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load markdown_deux_tags %}
+
+{% block page-title %}
+  Startseite
+{% endblock %}
+
+{% block content %}
+  <div class="container" style="padding-top: 1rem;">
+    <div class="row">
+      <div class="col-8">
+        <img src="{{ frontpage.image1_leading.url }}" alt="Senne Frühling"
+             class="img-fluid material-card material-card-2">
+      </div>
+      <div class="col-4">
+        <img src="{{ frontpage.image2_leading.url }}" alt="Senne Logo mit Hintergrund"
+             class="img-fluid">
+        <br> <br> <br>
+        <img src="{{ frontpage.image3_leading.url }}" alt="Senne Logo mit Hintergrund" class="img-fluid">
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div>
+      <div class="text-center">
+        <h2>{{ frontpage.block1_title }}</h2>
+        <div class="underline-small"></div>
+        <p class="lead">
+          {{ frontpage.block1_subtitle }}
+        </p>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-8">
+          {{ frontpage.block1_content|markdown }}
+        </div>
+        <div class="col-4">
+          <p>
+            <a href="{% url "archive:index" %}">
+              <img src="{{ frontpage.block1_image.url }}" alt="Senne"
+                   class="img-fluid material-card material-card-2">
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div>
+      <div class="text-center">
+        <h2>{{ frontpage.block2_title }}</h2>
+        <div class="underline-small"></div>
+        <p class="lead">
+          {{ frontpage.block2_subtitle }}
+        </p>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-4">
+          <p>
+            <img src="{{ frontpage.block2_image.url }}" alt="Senne"
+                 class="img-fluid material-card material-card-2">
+          </p>
+        </div>
+        <div class="col-8">
+          {{ frontpage.block2_content|markdown }}
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div>
+      <div class="text-center">
+        <h2>{{ frontpage.block3_title }}</h2>
+        <div class="underline-small"></div>
+        <p class="lead">
+          {{ frontpage.block3_subtitle }}
+        </p>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-8">
+          {{ frontpage.block3_content|markdown }}
+        </div>
+        <div class="col-4">
+          <p>
+            <img src="{{ frontpage.block3_image.url }}" alt="Senne"
+                 class="img-fluid material-card material-card-2">
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

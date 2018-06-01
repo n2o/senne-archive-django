@@ -43,7 +43,13 @@
         <a class="nav-item nav-link" href="{% url "pages" url="datenschutz" %}">Datenschutz</a>
         <a class="nav-item nav-link" href="{% url "pages" url="impressum" %}">Impressum</a>
         <span class="nav-item nav-link">|</span>
-        <a class="nav-item nav-link" href="{% url 'admin:index' %}">Login</a>
+        <a class="nav-item nav-link" href="{% url 'admin:index' %}">
+          {% if user.is_staff %}
+            Adminbereich
+          {% else %}
+            Login
+          {% endif %}
+        </a>
       </div>
     </div>
   </div>

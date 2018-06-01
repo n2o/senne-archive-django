@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'senne',
     'archive',
     'pages',
+    'frontpage',
 
     'pagedown',
     'markdown_deux',
@@ -132,3 +133,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 SITE_ID = 1
+
+MARKDOWN_DEUX_STYLES = {
+    "default": {
+        "extras": {
+            "code-friendly": None,
+        },
+        # Allow raw HTML (WARNING: don't use this for user-generated
+        # Markdown for your site!).
+        "safe_mode": False,
+    },
+    "nohtml": {
+        "extras": {
+            "code-friendly": None,
+        },
+        # Allow raw HTML (WARNING: don't use this for user-generated
+        # Markdown for your site!).
+        "safe_mode": "escape",
+    },
+}
