@@ -90,3 +90,5 @@ node_modules/
 migrations
 media/
 static/
+*.bak
+*.csv
