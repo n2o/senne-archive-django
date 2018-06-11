@@ -41,6 +41,7 @@ class ItemAdmin(VersionAdmin):
     fieldsets = [
         ('Titel und Verfasser',
          {'fields': [
+             'author_db',
              'title', 'author', 'role'
          ]}),
         ('Quelle',

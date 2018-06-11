@@ -23,6 +23,7 @@ for d in data:
 import os
 from datetime import datetime
 from django.db import models
+from django.db.models import CASCADE
 from django.utils.text import slugify
 
 from senne.models import CreatedModifiedModel
@@ -95,6 +96,7 @@ class Item(CreatedModifiedModel):
     # Titel und Verfasser
     title = models.CharField("Titel *", max_length=1024, blank=False, null=False)
     author = models.CharField("Verfasser", max_length=256, blank=False, null=False)
+    author_db = models.ForeignKey("Author", on_delete=CASCADE, blank=True, null=True)
     role = models.CharField("Rolle", max_length=256, blank=True, null=True)
 
     # Quelle
