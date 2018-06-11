@@ -21,10 +21,11 @@ for d in data:
 """
 
 import os
-
 from datetime import datetime
-
 from django.db import models
+from django.utils.text import slugify
+
+from senne.models import CreatedModifiedModel
 
 
 def construct_file_path(instance, filename: str) -> str:
@@ -44,7 +45,33 @@ def construct_file_path(instance, filename: str) -> str:
     return os.path.join("{}/{}/".format("archive", instance.author), filename)
 
 
-class Item(models.Model):
+def slugify_author(lastname: str = None, firstname: str = None, title: str = None) -> str:
+    """
+    Take name of author and return its slug-representation
+
+    :param lastname: Author.lastname
+    :param firstname: Author.firstname
+    :param title: Author.title
+    :return: slugified combination of args
+    """
+    lastname = replace_umlauts(lastname) if lastname else None
+    firstname = replace_umlauts(firstname) if firstname else None
+    title = replace_umlauts(title) if title else None
+    if not firstname:
+        return slugify("{}".format(lastname, title, firstname))
+    if title:
+        return slugify("{} {} {}".format(lastname, title, firstname))
+    return slugify("{} {}".format(lastname, firstname))
+
+
+def replace_umlauts(input: str):
+    replacements = [("ß", "ss"), ("ü", "ue"), ("ä", "ae"), ("ö", "oe"), ("Ü", "Ue"), ("Ä", "Ae"), ("Ö", "Oe")]
+    for (s, r) in replacements:
+        input = input.replace(s, r)
+    return input
+
+
+class Item(CreatedModifiedModel):
     upload_to = "archive/"
 
     medart_choices = (
@@ -97,8 +124,23 @@ class Item(models.Model):
     image2 = models.ImageField("2. Abbildung", upload_to=construct_file_path, blank=True, null=True)
     image3 = models.ImageField("3. Abbildung", upload_to=construct_file_path, blank=True, null=True)
 
-    created = models.DateTimeField("Hinzugefügt am", default=datetime.now)
-    modified = models.DateTimeField("Zuletzt geändert", auto_now=True)
-
     def __str__(self):
         return str(self.title)
+
+
+class Author(CreatedModifiedModel):
+    title = models.CharField("Titel", max_length=256, blank=True, null=True)
+    firstname = models.CharField("Vorname", max_length=256, blank=True, null=True)
+    lastname = models.CharField("Nachname *", max_length=256, blank=False, null=False)
+    filepath = models.SlugField("Pfad wo die Dateien abgelegt werden (wird automatisch berechnet beim Speichern)",
+                                blank=True, null=True, unique=True)
+
+    def __str__(self):
+        if self.title:
+            return "{}, {} {}".format(self.lastname, self.title, self.firstname)
+        return "{}, {}".format(self.lastname, self.firstname)
+
+    def save(self, *args, **kwargs):
+        if not self.filepath:
+            self.filepath = slugify_author(self.lastname, self.firstname, self.title)
+        super().save(*args, **kwargs)

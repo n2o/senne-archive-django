@@ -1,7 +1,32 @@
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 
-from .models import Item
+from .models import Item, Author
+
+
+@admin.register(Author)
+class AuthorAdmin(VersionAdmin):
+    list_display = ('lastname', 'firstname', 'title', 'filepath')
+    list_filter = ['title', 'firstname', 'lastname']
+    search_fields = ['title', 'firstname', 'lastname']
+    save_as = True
+    readonly_fields = ['created', 'modified', 'filepath']
+    ordering = ('lastname',)
+
+    fieldsets = [
+        ('Titel und Verfasser',
+         {'fields': [
+             'title', 'firstname', 'lastname',
+         ]}),
+        ('Speicherpfad',
+         {'fields': [
+             ('filepath'),
+         ]}),
+        ('Meta-Informationen',
+         {'fields': [
+             ('created', 'modified'),
+         ]}),
+    ]
 
 
 @admin.register(Item)
