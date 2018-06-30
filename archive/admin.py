@@ -31,7 +31,7 @@ class AuthorAdmin(VersionAdmin):
 
 @admin.register(Item)
 class ItemAdmin(VersionAdmin):
-    list_display = ('title', 'author_db', 'author', 'medart', 'public', 'modified')
+    list_display = ('title', 'author', 'medart', 'public', 'modified')
     list_filter = ['medart', 'source_date']
     search_fields = ['title', 'author']
     save_as = True
@@ -41,8 +41,9 @@ class ItemAdmin(VersionAdmin):
     fieldsets = [
         ('Titel und Verfasser',
          {'fields': [
-             'author_db',
-             'title', 'author', 'role'
+             'title',
+             'author',
+             'role'
          ]}),
         ('Quelle',
          {'fields': [

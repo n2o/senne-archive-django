@@ -40,7 +40,7 @@ def construct_file_path(instance, filename: str) -> str:
     :return: Constructed path for file
     :rtype: str
     """
-    return os.path.join("{}/{}/".format("archive", instance.author_db.filepath), filename)
+    return os.path.join("{}/{}/".format("archive", instance.author.filepath), filename)
 
 
 def slugify_author(lastname: str = None, firstname: str = None, title: str = None) -> str:
@@ -96,8 +96,7 @@ class Item(CreatedModifiedModel):
     )
     # Titel und Verfasser
     title = models.CharField("Titel *", max_length=1024, blank=False, null=False)
-    author = models.CharField("Verfasser", max_length=256, blank=False, null=False)
-    author_db = models.ForeignKey("Author", on_delete=CASCADE, blank=True, null=True)
+    author = models.ForeignKey("Author", on_delete=CASCADE, blank=True, null=True)
     role = models.CharField("Rolle", max_length=256, blank=True, null=True)
 
     # Quelle
@@ -130,6 +129,10 @@ class Item(CreatedModifiedModel):
     def __str__(self):
         return str(self.title)
 
+    class Meta:
+        verbose_name = 'Item'
+        verbose_name_plural = 'Items'
+
 
 class Author(CreatedModifiedModel):
     title = models.CharField("Titel", max_length=256, blank=True, null=True)
@@ -145,3 +148,7 @@ class Author(CreatedModifiedModel):
         if not self.filepath:
             self.filepath = slugify_author(self.lastname, self.firstname, self.title)
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Autor'
+        verbose_name_plural = 'Autoren'
