@@ -18,8 +18,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from pages import views as pviews
 from frontpage import views
+from pages import views as pviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
