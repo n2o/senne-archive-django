@@ -1,7 +1,115 @@
 {% extends "base.html" %}
 
 {% load staticfiles %}
+{% load senne_common %}
+
+{% block page-title %}
+  Archiv: Detailansicht
+{% endblock %}
+
+{% block page-header %}
+  Detailansicht
+{% endblock %}
 
 {% block content %}
-  <h1>Archiv</h1>
+  <div class="card" style="margin-top: 2rem;">
+    <div class="card-header">
+      {{ item.title }}
+    </div>
+    <div class="card-body">
+      <div class="card-text">
+        <div class="row">
+          <div class="col-6">
+            <p>
+              Autor: {{ item.author.title|or_blank }} {{ item.author.firstname|or_blank }} {{ item.author.lastname|or_blank }}
+            </p>
+            {{ item.place|paragraph_if_field_exists:"Ort der Veröffentlichung"|safe }}
+            {{ item.source_title|paragraph_if_field_exists:"Quelltitel"|safe }}
+          </div>
+          <div class="col-3">
+            {% if item.digital_reference %}
+              <a class="btn btn-link" href="{{ item.digital_reference }}">
+                <i class="fa fa-external-link" style="padding-right:0.2em"></i>
+                {{ item.digital_reference }}
+              </a>
+            {% endif %}
+          </div>
+          <div class="col-3">
+            <div class="card pull-right" style="margin-left: 1rem">
+              <div class="card-body" style="padding: 1rem">
+                {{ item.medart|or_blank_with_title:"Art"|safe }}
+                {{ item.year|or_blank_with_title:"Jahr"|safe }}
+                {{ item.pages|or_blank_with_title:"Seiten"|safe }}
+                {{ item.amount|or_blank_with_title:"Anzahl"|safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+        {{ item.abstract|heading_if_field_exists:"Abstract"|safe }}
+
+        {% if item.file1 %}
+          <hr>
+          <h4>Anhänge</h4>
+          <a class="btn btn-link" href="{{ item.file1.url }}">
+            {{ item.file1.name|get_extension|fa_attachment|safe }} {{ item.file1.name|extract_filename }}
+          </a>
+          {% if item.file2 %}
+            <span style="padding-left: 3rem"></span>
+            <a class="btn btn-link" href="{{ item.file2.url }}">
+              {{ item.file2.name|get_extension|fa_attachment|safe }} {{ item.file2.name|extract_filename }}
+            </a>
+          {% endif %}
+          {% if item.file3 %}
+            <span style="padding-left: 3rem"></span>
+            <a class="btn btn-link" href="{{ item.file3.url }}">
+              {{ item.file3.name|get_extension|fa_attachment|safe }} {{ item.file3.name|extract_filename }}
+            </a>
+          {% endif %}
+        {% endif %}
+
+        {% if item.notes %}
+          <hr>
+        {% endif %}
+        {{ item.notes|heading_if_field_exists:"Notizen"|safe }}
+
+        {% if item.keywords %}
+          <hr>
+        {% endif %}
+        {{ item.keywords|heading_if_field_exists:"Schlagworte"|safe }}
+      </div>
+    </div>
+  </div>
+
+  {% if item.image1 %}
+    <div class="card" style="margin-top: 1rem">
+      <div class="card-header">
+        Bilder
+      </div>
+      <div class="card-body">
+        <div class="card-text">
+          <div class="row">
+            <div class="col-4 text-center">
+              <a href="{{ item.image1.url }}">
+                <img class="img-fluid" src="{{ item.image1.url }}" alt="">
+              </a>
+            </div>
+            {% if item.image2 %}
+              <div class="col-4 text-center">
+                <a href="{{ item.image2.url }}">
+                  <img class="img-fluid" src="{{ item.image2.url }}" alt="">
+                </a>
+              </div>
+            {% endif %}
+            {% if item.image3 %}
+              <div class="col-4 text-center">
+                <a href="{{ item.image3.url }}">
+                  <img class="img-fluid" src="{{ item.image3.url }}" alt="">
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

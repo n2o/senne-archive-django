@@ -14,7 +14,8 @@
 
 {% block content %}
   <p class="lead">
-    Bitte geben Sie einen Autorennamen, einen Publikationstitel, ein Stichwort in die Suchmaske ein.
+    Hier können Sie unser Archiv durchsuchen. Benutzen Sie diese Eingabemaske, um in den Titeln und in den Abstracts zu
+    suchen.
   </p>
 
   <br>
@@ -50,12 +51,12 @@
           <td>{{ item.author }}</td>
           <td>{{ item.medart }}</td>
           <td class="text-right">
-            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
-                    data-target="#details-item-{{ item.id }}">
+            <a href="{% url 'archive:details' pk=item.pk %}" type="button" class="btn btn-secondary btn-sm btn-white">
               Details
-            </button>
+            </a>
             {% if user.is_staff %}
-              <a type="button" class="btn btn-info btn-sm" href="{% url "admin:archive_item_change" item.id %}">
+              <a type="button" class="btn btn-info btn-sm btn-white"
+                 href="{% url "admin:archive_item_change" item.id %}">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </a>
             {% endif %}
@@ -65,84 +66,4 @@
       </tbody>
     </table>
   {% endif %}
-
-  <!-- Modal -->
-  {% for item in items %}
-    <div class="modal fade" id="details-item-{{ item.id }}" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ item.title }}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-8">
-                {{ item.author|html_paragraph_if_field_exists:"Autor"|safe }}
-                {{ item.role|html_paragraph_if_field_exists:"Rolle"|safe }}
-              </div>
-              <div class="col-4">
-                {% if item.image1 %}
-                  <div class="pull-right" style="float: right;">
-                    <a href="{{ item.image1.url }}">
-                      <img src="{{ item.image1.url }}" class="img-thumbnail" alt="{{ item.title }}"
-                           style="max-width: 200px">
-                    </a>
-                  </div>
-                {% endif %}
-                {% if item.image2 %}
-                  <div class="pull-right" style="float: right;">
-                    <a href="{{ item.image2.url }}">
-                      <img src="{{ item.image2.url }}" class="img-thumbnail" alt="{{ item.title }}"
-                           style="max-width: 200px">
-                    </a>
-                  </div>
-                {% endif %}
-                {% if item.image3 %}
-                  <div class="pull-right" style="float: right;">
-                    <a href="{{ item.image3.url }}">
-                      <img src="{{ item.image3.url }}" class="img-thumbnail" alt="{{ item.title }}"
-                           style="max-width: 200px">
-                    </a>
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-
-            {% if item.file1 or item.file2 or item.file3 %}
-              <hr>
-              <h4>Dateien</h4>
-              {% if item.file1 %}
-                <a href="{{ item.file1.url }}">{{ item.file1.name|get_extension|fa_attachment|safe }} {{ item.file1.name|extract_filename }}</a>
-              {% endif %}
-              {% if item.file2 %}
-                <a href="{{ item.file2.url }}">{{ item.file2.name|get_extension|fa_attachment|safe }} {{ item.file2.name|extract_filename }}</a>
-              {% endif %}
-              {% if item.file3 %}
-                <a href="{{ item.file3.url }}">{{ item.file3.name|get_extension|fa_attachment|safe }} {{ item.file3.name|extract_filename }}</a>
-              {% endif %}
-            {% endif %}
-
-            <hr>
-            <h4>Quelle</h4>
-            {{ item.medart|html_paragraph_if_field_exists:"Medienart"|safe }}
-            {{ item.source_title|html_paragraph_if_field_exists:"Quelltitel"|safe }}
-            {{ item.abstract|html_paragraph_if_field_exists:"Abstract"|safe }}
-            {{ item.year|html_paragraph_if_field_exists:"Jahr"|safe }}
-            {{ item.source_datetime|html_paragraph_if_field_exists:"Datum"|safe }}
-            {{ item.notes|html_paragraph_if_field_exists:"Anmerkungen"|safe }}
-            {{ item.place|html_paragraph_if_field_exists:"Ort / Veröffentlichung"|safe }}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-
 {% endblock %}

@@ -4,7 +4,58 @@ register = template.Library()
 
 
 @register.filter(is_safe=True)
-def html_paragraph_if_field_exists(field, name):
+def or_blank(field):
+    """
+    Shows field if not empty
+
+    :param field:
+    :return:
+    """
+    if field:
+        return field
+    else:
+        return ""
+
+
+@register.filter(is_safe=True)
+def or_blank_with_title(field, title):
+    """
+    Shows field if not empty
+
+    :param field:
+    :return:
+    """
+    if field:
+        return "{}: {}<br>".format(title, field)
+    else:
+        return ""
+
+
+@register.filter(is_safe=True)
+def col_if_field_exists(field, name):
+    if field:
+        return """
+            <div class='row'>
+                <div class='col-2'>
+                    {}
+                </div>
+                <div class='col-10'>
+                    {}
+                </div>
+            </div>
+        """.format(name, field)
+    return ""
+
+
+@register.filter(is_safe=True)
+def heading_if_field_exists(field, name):
+    if field:
+        return "<h4>{}</h4><p>{}</p>".format(name, field)
+    return ""
+
+
+@register.filter(is_safe=True)
+def paragraph_if_field_exists(field, name):
     if field:
         return "<p>{}: {}</p>".format(name, field)
     return ""
@@ -42,4 +93,4 @@ def fa_attachment(extension):
     elif extension == 'zip':
         return "<i class='fa fa-file-archive-o'></i>"
     else:
-        return extension
+        return ""
