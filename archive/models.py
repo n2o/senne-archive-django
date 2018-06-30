@@ -73,6 +73,16 @@ def replace_umlauts(input: str):
     return input
 
 
+def slugify_german(input: str):
+    """
+    Replace umlauts and return slugged input.
+
+    :param input: Any string
+    :return: Slugged string
+    """
+    return slugify(replace_umlauts(input))
+
+
 class Item(CreatedModifiedModel):
     upload_to = "archive/"
 
@@ -96,24 +106,20 @@ class Item(CreatedModifiedModel):
     )
     # Titel und Verfasser
     title = models.CharField("Titel *", max_length=1024, blank=False, null=False)
-    author = models.ForeignKey("Author", on_delete=CASCADE, blank=True, null=True)
-    role = models.CharField("Rolle", max_length=256, blank=True, null=True)
+    author = models.ForeignKey("Author", on_delete=CASCADE, blank=False, null=True)
 
     # Quelle
     medart = models.CharField("Medienart *", max_length=256, choices=medart_choices, blank=False)
     source_title = models.CharField("Quelltitel", max_length=1024, blank=True, null=True)
     abstract = models.TextField("Abstract", blank=True, null=True)
     year = models.IntegerField("Jahrgang", default=datetime.now().year, blank=True, null=True)
-    number = models.CharField("Nummer", max_length=256, blank=True, null=True)
-    source_date = models.DateField("Veröffentlichungsdatum", blank=True, null=True)
     pages = models.CharField("Seiten", max_length=256, blank=True, null=True)
     notes = models.TextField("Anmerkungen", blank=True, null=True)
     place = models.CharField("Ort / Veröffentlichung", max_length=256, blank=True, null=True)
 
-    keywords = models.TextField("Schlagworte *", default="", blank=True, max_length=1024, null=True)
+    keywords = models.TextField("Schlagworte", default="", blank=True, max_length=1024, null=True)
     location = models.CharField("Standort (analoges Archiv)", max_length=256, blank=True, null=True)
     amount = models.IntegerField("Anzahl / Exemplare", default=1, blank=True, null=True)
-    owner = models.CharField("Besitzer", max_length=256, blank=True, null=True)
     public = models.BooleanField("Veröffentlichen?", default=True)
 
     digital_reference = models.URLField("Digitalreferenz (URL)", blank=True, null=True)

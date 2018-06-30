@@ -32,7 +32,7 @@ class AuthorAdmin(VersionAdmin):
 @admin.register(Item)
 class ItemAdmin(VersionAdmin):
     list_display = ('title', 'author', 'medart', 'public', 'modified')
-    list_filter = ['medart', 'source_date', 'author', 'public']
+    list_filter = ['medart', 'year', 'author', 'public']
     search_fields = ['title', 'author__lastname', 'abstract']
     save_as = True
     readonly_fields = ['created', 'modified']
@@ -43,15 +43,15 @@ class ItemAdmin(VersionAdmin):
          {'fields': [
              'title',
              'author',
-             'role'
          ]}),
         ('Quelle',
          {'fields': [
              'source_title', 'amount',
-             'medart', 'location', 'owner',
-             ('year', 'source_date', 'number'),
-             ('pages', 'place'),
-             'notes'
+             'medart', 'location',
+             'year',
+             ('place', 'pages'),
+             'notes',
+             'keywords',
          ]}),
         ('Abstract',
          {'fields': [
