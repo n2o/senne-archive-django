@@ -46,7 +46,7 @@
       <tbody>
       {% for item in items %}
         <tr>
-          <th scope="row">{{ forloop.counter }}</th>
+          <th scope="row">{{ forloop.counter|add:forloop_modifier }}</th>
           <td>{{ item.title }}</td>
           <td>{{ item.author }}</td>
           <td>{{ item.medart }}</td>
@@ -65,5 +65,47 @@
       {% endfor %}
       </tbody>
     </table>
+  {% endif %}
+
+  {% if items.has_other_pages %}
+    <nav>
+      <ul class="pagination">
+        {% if items.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="disabled page-item">
+            <a class="page-link">
+              &laquo;
+            </a>
+          </li>
+        {% endif %}
+        {% for i in items.paginator.page_range %}
+          {% if items.number == i %}
+            <li class="active page-item">
+              <a class="page-link">
+                {{ i }} <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?q={{ request.GET.q }}&page={{ i }}">{{ i }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        {% if items.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?q={{ request.GET.q }}&page={{ items.next_page_number }}">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="disabled page-item">
+            <a class="page-link">
+              &raquo;
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
   {% endif %}
 {% endblock %}
