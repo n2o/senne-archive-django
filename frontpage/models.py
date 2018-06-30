@@ -27,3 +27,7 @@ class Frontpage(CreatedModifiedModel):
 
     def __str__(self):
         return "Startseite"
+
+    class Meta:
+        verbose_name = 'Startseite'
+        verbose_name_plural = 'Startseiten'
