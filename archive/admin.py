@@ -32,8 +32,8 @@ class AuthorAdmin(VersionAdmin):
 @admin.register(Item)
 class ItemAdmin(VersionAdmin):
     list_display = ('title', 'author', 'medart', 'public', 'modified')
-    list_filter = ['medart', 'source_date']
-    search_fields = ['title', 'author']
+    list_filter = ['medart', 'source_date', 'author', 'public']
+    search_fields = ['title', 'author', 'abstract']
     save_as = True
     readonly_fields = ['created', 'modified']
     ordering = ('-modified',)
