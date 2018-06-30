@@ -1,11 +1,8 @@
+from django.db.models import Q
+from django.http import HttpRequest, Http404
+from django.shortcuts import render, get_object_or_404
 from typing import List
 
-from django.db.models import Q
-from django.http import HttpRequest
-from django.shortcuts import render
-from django.views import generic
-
-from .forms import ItemForm
 from .models import Item
 
 
@@ -15,25 +12,14 @@ def index(request: HttpRequest):
     if query:
         items: List[Item] = Item.objects \
             .filter(public=True) \
-            .filter(Q(title__icontains=query) | Q(author__icontains=query))
+            .filter(Q(title__icontains=query)) \
+            .filter(Q(abstract__icontains=query))
     return render(request, "archive/index.html", {"items": items})
 
 
-class IndexView(generic.FormView):
-    template_name = "archive/index.html"
-    form_class = ItemForm
-
-    # context_object_name = 'latest_items'
-    #
-    # def get_queryset(self):
-    #     return Item.objects.order_by('-pub_date')[:5]
-
-
-class DetailView(generic.DetailView):
-    model = Item
-    template_name = "archive/detail.html"
-
-
-class ResultsView(generic.DetailView):
-    model = Item
-    template_name = "archive/results.html"
+def detail(request: HttpRequest, pk: Item):
+    item_db = get_object_or_404(Item, pk=pk)
+    item = item_db if item_db.public else None
+    if not item:
+        raise Http404("Archiveintrag konnte nicht gefunden werden")
+    return render(request, "archive/detail.html", {"item": item})
