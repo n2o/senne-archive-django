@@ -40,10 +40,7 @@ def construct_file_path(instance, filename: str) -> str:
     :return: Constructed path for file
     :rtype: str
     """
-    from pprint import pprint
-    pprint(instance)
-    pprint(filename)
-    return os.path.join("{}/{}/".format("archive", instance.author), filename)
+    return os.path.join("{}/{}/".format("archive", instance.author_db.filepath), filename)
 
 
 def slugify_author(lastname: str = None, firstname: str = None, title: str = None) -> str:
@@ -58,11 +55,15 @@ def slugify_author(lastname: str = None, firstname: str = None, title: str = Non
     lastname = replace_umlauts(lastname) if lastname else None
     firstname = replace_umlauts(firstname) if firstname else None
     title = replace_umlauts(title) if title else None
+    return slugify(format_author_name(firstname, lastname, title))
+
+
+def format_author_name(firstname: str, lastname: str, title: str):
     if not firstname:
-        return slugify("{}".format(lastname, title, firstname))
+        return "{}".format(lastname, title, firstname)
     if title:
-        return slugify("{} {} {}".format(lastname, title, firstname))
-    return slugify("{} {}".format(lastname, firstname))
+        return "{}, {} {}".format(lastname, title, firstname)
+    return "{}, {}".format(lastname, firstname)
 
 
 def replace_umlauts(input: str):
@@ -138,9 +139,7 @@ class Author(CreatedModifiedModel):
                                 blank=True, null=True, unique=True)
 
     def __str__(self):
-        if self.title:
-            return "{}, {} {}".format(self.lastname, self.title, self.firstname)
-        return "{}, {}".format(self.lastname, self.firstname)
+        return format_author_name(self.firstname, self.lastname, self.title)
 
     def save(self, *args, **kwargs):
         if not self.filepath:
