@@ -99,14 +99,15 @@
   {% else %}
     {% if empty_result and not no_results %}
       <div class="alert alert-warning" role="alert">
-        Bitte grenzen Sie die Suche ein, indem Sie das Formular oben mit Stichworten befüllen.
+        Bitte grenzen Sie die Suche ein, indem Sie das Formular oben mit Stichworten befüllen oder einen Autor
+        auswählen, für den Sie gerne die Artikel sehen würden.
       </div>
     {% endif %}
   {% endif %}
 
   {% if no_results %}
     <div class="alert alert-info" role="alert">
-      Es konnten keine Ergebnisse gefunden werden. Vielleicht probieren Sie es mit einer anderen Suche.
+      Es konnten keine Ergebnisse gefunden werden. Probieren Sie es mit einer anderen Suche.
     </div>
   {% endif %}
 
