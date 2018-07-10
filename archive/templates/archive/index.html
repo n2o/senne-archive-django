@@ -24,15 +24,18 @@
 
   <br>
 
-  <form action="" method="get">
+  <form action="" method="get" id="search-form">
     <div class="form-group">
       <label for="q">Stichwörter (durchsucht Titel, Abstract und Notizen)</label>
       <input class="form-control form-control-lg" name="q"
-             placeholder="Senne, Naturschutzverein, ..." value="{{ request.GET.q }}">
+             placeholder="Beispielsweise Senne, Sennelandschaft, ..." value="{{ request.GET.q }}">
     </div>
 
     <div class="form-group">
-      <label for="author-list">Suche auf einen Autor beschränken</label>
+      <label for="author-list">
+        Suche auf einen Autor beschränken. Zeigt alle Artikel eines Autors, wenn ein Autor ausgewählt wurde und keine
+        Stichwörter eingegeben wurden.
+      </label>
       <select class="form-control" id="author-list" name="autor">
         <option value="">Alle Autoren</option>
         {% for author in authors %}
@@ -44,7 +47,10 @@
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Suche starten</button>
+    <a class="btn btn-secondary btn-white pull-right" href="{% url 'archive:index' %}">Suche leeren</a>
   </form>
+
+  <br>
 
   <div class="spacer"></div>
 
@@ -54,7 +60,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Titel</th>
-        <th scope="col">Autor</th>
+        <th scope="col" width="20%">Autor</th>
         <th scope="col">Medienart</th>
         <th scope="col" {% if user.is_staff %}width="15%"{% endif %}></th>
       </tr>
@@ -63,8 +69,17 @@
       {% for item in items %}
         <tr>
           <th scope="row">{{ forloop.counter|add:forloop_modifier }}</th>
-          <td>{{ item.title }}</td>
-          <td>{{ item.author }}</td>
+          <td>
+            <a href="{% url 'archive:details' pk=item.pk %}">
+              {{ item.title }}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'archive:index' %}?autor={{ item.author.pk }}" data-toggle="tooltip"
+               title="Zeige alle Artikel dieses Autors">
+              {{ item.author }}
+            </a>
+          </td>
           <td>{{ item.medart }}</td>
           <td class="text-right">
             <a href="{% url 'archive:details' pk=item.pk %}" type="button" class="btn btn-secondary btn-sm btn-white">
@@ -82,6 +97,14 @@
       </tbody>
     </table>
   {% else %}
+    {% if empty_result and not no_results %}
+      <div class="alert alert-warning" role="alert">
+        Bitte grenzen Sie die Suche ein, indem Sie das Formular oben mit Stichworten befüllen.
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if no_results %}
     <div class="alert alert-info" role="alert">
       Es konnten keine Ergebnisse gefunden werden. Vielleicht probieren Sie es mit einer anderen Suche.
     </div>

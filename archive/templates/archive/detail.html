@@ -21,7 +21,11 @@
         <div class="row">
           <div class="col-6">
             <p>
-              Autor: {{ item.author.title|or_blank }} {{ item.author.firstname|or_blank }} {{ item.author.lastname|or_blank }}
+              Autor:
+              <a href="{% url 'archive:index' %}?autor={{ item.author.pk }}" data-toggle="tooltip"
+                 title="Zeige alle Artikel dieses Autors">
+                {{ item.author }}
+              </a>
             </p>
             {{ item.place|paragraph_if_field_exists:"Ort der Veröffentlichung"|safe }}
             {{ item.source_title|paragraph_if_field_exists:"Quelltitel"|safe }}
@@ -112,4 +116,16 @@
       </div>
     </div>
   {% endif %}
+
+  {% if user.is_staff %}
+    <br>
+    <p>
+      <a type="button" class="btn btn-info btn-sm btn-white"
+         href="{% url "admin:archive_item_change" item.id %}">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Artikel bearbeiten
+      </a>
+    </p>
+  {% endif %}
+
 {% endblock %}

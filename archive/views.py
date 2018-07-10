@@ -8,16 +8,18 @@ from .models import Item, Author
 
 
 def index(request: HttpRequest):
-    query = request.GET.get("q")
+    query_get = request.GET.get("q")
     author_get = request.GET.get("autor")
     page = request.GET.get("page", 1)
     authors = Author.objects.all()
     author = __get_author_from_get_parameter(author_get)
-    items_from_db = __query_items(query, author)
+    items_from_db = __query_items(query_get, author)
     prepared_items = __paginate_results(items_from_db, page)
     return render(request, "archive/index.html", {"items": prepared_items,
                                                   "forloop_modifier": 20 * (int(page) - 1),
-                                                  "authors": authors})
+                                                  "authors": authors,
+                                                  "no_results": (query_get or author) and not prepared_items,
+                                                  "empty_result": "q" in request.GET and "autor" in request.GET})
 
 
 def __get_author_from_get_parameter(author):
@@ -43,6 +45,8 @@ def __paginate_results(items, page):
 
 
 def __query_items(query: str, author: Author):
+    if not query and author:
+        return Item.objects.filter(public=True).filter(author=author)
     if query:
         items = Item.objects \
             .filter(public=True) \
