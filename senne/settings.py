@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'pagedown',
     'markdown_deux',
     'reversion',
-    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +120,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     # os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'node_modules'),
+    os.path.join(BASE_DIR, 'resources/public/node_modules'),
     os.path.join(BASE_DIR, 'senne/templates/assets')
     # '/var/www/static/',
 ]

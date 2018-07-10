@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
 
+  <script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
+
+  {% block styles %}{% endblock %}
+
   <title>
     Naturschutz-Stiftung Senne ::
     {% block page-title %}{% endblock %}
@@ -80,8 +84,9 @@
   </div>
 </footer>
 
-<script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
 <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+{% block after_content %}{% endblock %}
 
 </body>
 </html>

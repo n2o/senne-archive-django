@@ -12,6 +12,10 @@
   Archiv
 {% endblock %}
 
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'select2/dist/css/select2.min.css' %}">
+{% endblock %}
+
 {% block content %}
   <p class="lead">
     Hier können Sie unser Archiv durchsuchen. Benutzen Sie diese Eingabemaske, um in den Titeln und in den Abstracts zu
@@ -21,13 +25,25 @@
   <br>
 
   <form action="" method="get">
-    <div class="input-group">
-      <input class="form-control form-control-lg" type="text" name="q"
+    <div class="form-group">
+      <label for="q">Stichwörter (durchsucht Titel, Abstract und Notizen)</label>
+      <input class="form-control form-control-lg" name="q"
              placeholder="Senne, Naturschutzverein, ..." value="{{ request.GET.q }}">
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="submit">Suchen</button>
-      </div>
     </div>
+
+    <div class="form-group">
+      <label for="author-list">Suche auf einen Autor beschränken</label>
+      <select class="form-control" id="author-list" name="autor">
+        <option value="">Alle Autoren</option>
+        {% for author in authors %}
+          <option value="{{ author.pk }}"
+                  {% if author.pk|stringformat:"s" == request.GET.autor %}selected="selected"{% endif %}>
+            {{ author }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Suche starten</button>
   </form>
 
   <div class="spacer"></div>
@@ -65,6 +81,10 @@
       {% endfor %}
       </tbody>
     </table>
+  {% else %}
+    <div class="alert alert-info" role="alert">
+      Es konnten keine Ergebnisse gefunden werden. Vielleicht probieren Sie es mit einer anderen Suche.
+    </div>
   {% endif %}
 
   {% if items.has_other_pages %}
@@ -108,4 +128,14 @@
       </ul>
     </nav>
   {% endif %}
+
+  {% block after_content %}
+    <script src="{% static 'select2/dist/js/select2.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#author-list').select2();
+        });
+    </script>
+  {% endblock %}
+
 {% endblock %}
