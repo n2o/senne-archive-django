@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pagedown',
     'markdown_deux',
     'reversion',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

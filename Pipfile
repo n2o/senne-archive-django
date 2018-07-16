@@ -12,6 +12,7 @@ django-reversion = "*"
 django-pagedown = "*"
 django-markdown-deux = "*"
 gunicorn = "*"
+sorl-thumbnail = "*"
 
 [dev-packages]
 
