@@ -117,7 +117,7 @@
         {% if items.has_previous %}
           <li class="page-item">
             <a class="page-link"
-               href="?q={{ request.GET.q }}&autor={{ request.GET.autor }}&page={{ items.previous_page_number }}">&laquo;</a>
+               href="?q={{ request.GET.q }}&autor={{ request.GET.autor }}&seite={{ items.previous_page_number }}">&laquo;</a>
           </li>
         {% else %}
           <li class="disabled page-item">
@@ -135,14 +135,14 @@
             </li>
           {% else %}
             <li class="page-item">
-              <a class="page-link" href="?q={{ request.GET.q }}&autor={{ request.GET.autor }}&page={{ i }}">{{ i }}</a>
+              <a class="page-link" href="?q={{ request.GET.q }}&autor={{ request.GET.autor }}&seite={{ i }}">{{ i }}</a>
             </li>
           {% endif %}
         {% endfor %}
         {% if items.has_next %}
           <li class="page-item">
             <a class="page-link"
-               href="?q={{ request.GET.q }}&autor={{ request.GET.autor }}&page={{ items.next_page_number }}">&raquo;</a>
+               href="?q={{ request.GET.q }}&autor={{ request.GET.autor }}&seite={{ items.next_page_number }}">&raquo;</a>
           </li>
         {% else %}
           <li class="disabled page-item">

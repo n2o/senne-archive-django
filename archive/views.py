@@ -10,7 +10,7 @@ from .models import Item, Author
 def index(request: HttpRequest):
     query_get = request.GET.get("q")
     author_get = request.GET.get("autor")
-    page = request.GET.get("page", 1)
+    page = request.GET.get("seite", 1)
     authors = Author.objects.all()
     author = __get_author_from_get_parameter(author_get)
     items_from_db = __query_items(query_get, author)
