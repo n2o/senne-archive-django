@@ -2,9 +2,10 @@
 
 {% load staticfiles %}
 {% load senne_common %}
+{% load sorl_thumbnail %}
 
 {% block page-title %}
-  Archiv: Detailansicht
+  Archiv Detailansicht : {{ item.title }}
 {% endblock %}
 
 {% block page-header %}
@@ -94,20 +95,29 @@
           <div class="row">
             <div class="col-4 text-center">
               <a href="{{ item.image1.url }}">
-                <img class="img-fluid" src="{{ item.image1.url }}" alt="">
+                {% thumbnail item.image1 "350" as img %}
+                  <img src="{{ img.url }}" alt="Senne Detail Image 1"
+                       class="img-fluid material-card material-card-2">
+                {% endthumbnail %}
               </a>
             </div>
             {% if item.image2 %}
               <div class="col-4 text-center">
                 <a href="{{ item.image2.url }}">
-                  <img class="img-fluid" src="{{ item.image2.url }}" alt="">
+                  {% thumbnail item.image2 "350" as img %}
+                    <img src="{{ img.url }}" alt="Senne Detail Image 2"
+                         class="img-fluid material-card material-card-2">
+                  {% endthumbnail %}
                 </a>
               </div>
             {% endif %}
             {% if item.image3 %}
               <div class="col-4 text-center">
                 <a href="{{ item.image3.url }}">
-                  <img class="img-fluid" src="{{ item.image3.url }}" alt="">
+                  {% thumbnail item.image3 "350" as img %}
+                    <img src="{{ img.url }}" alt="Senne Detail Image 3"
+                         class="img-fluid material-card material-card-2">
+                  {% endthumbnail %}
                 </a>
               </div>
             {% endif %}
