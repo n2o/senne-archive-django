@@ -13,8 +13,11 @@ django-pagedown = "*"
 django-markdown-deux = "*"
 gunicorn = "*"
 sorl-thumbnail = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.6"
