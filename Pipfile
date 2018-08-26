@@ -6,8 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 markdown = "==2.6.11"
-pillow = "==5.0.0"
-pytz = "==2018.3"
+pillow = "==5.2.0"
+pytz = "==2018.5"
 django-reversion = "*"
 django-pagedown = "*"
 django-markdown-deux = "*"
@@ -20,4 +20,4 @@ sphinx-rtd-theme = "*"
 pylint = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
