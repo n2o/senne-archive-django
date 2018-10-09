@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 COPY Pipfile /code/Pipfile
 COPY Pipfile.lock /code/Pipfile.lock
@@ -8,12 +8,11 @@ WORKDIR /code
 RUN apk add --no-cache build-base python-dev py-pip jpeg-dev zlib-dev
 ENV LIBRARY_PATH=/lib:/usr/lib
 
-RUN pip install -U pip && \
-    pip install pipenv && \
-    pipenv install
+RUN pip install pipenv==2018.6.25 pip==18.0 && \
+    pipenv install --system --deploy --ignore-pipfile
 
 COPY . /code
 
-EXPOSE 8888
+EXPOSE 8000
 
-CMD ["pipenv", "run", "python", "manage.py", "runserver", "0.0.0.0:8888"]
+CMD ["pipenv", "run", "gunicorn", "-b", "0.0.0.0:8000", "senne.wsgi"]
