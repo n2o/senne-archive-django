@@ -12,7 +12,7 @@
   <div class="container" style="padding-top: 1rem;">
     <div class="row">
       <div class="col-8">
-        <a href="{{ frontpage.image1_leading.url }}">
+        <a href="{{ frontpage.image1_leading.url }}" data-lightbox="frontpage">
           {% thumbnail frontpage.image1_leading "720" as img %}
             <img src="{{ img.url }}" alt="Senne Leading Image 1"
                  class="img-fluid material-card material-card-2">
@@ -20,14 +20,14 @@
         </a>
       </div>
       <div class="col-4">
-        <a href="{{ frontpage.image2_leading.url }}">
+        <a href="{{ frontpage.image2_leading.url }}" data-lightbox="frontpage">
           {% thumbnail frontpage.image2_leading "350" as img %}
             <img src="{{ img.url }}" alt="Senne Leading Image 2"
                  class="img-fluid material-card material-card-2">
           {% endthumbnail %}
         </a>
         <br> <br> <br>
-        <a href="{{ frontpage.image3_leading.url }}">
+        <a href="{{ frontpage.image3_leading.url }}" data-lightbox="frontpage">
           {% thumbnail frontpage.image3_leading "350" as img %}
             <img src="{{ img.url }}" alt="Senne Leading Image 3"
                  class="img-fluid material-card material-card-2">
@@ -80,7 +80,7 @@
       <div class="row">
         <div class="col-4">
           <p>
-            <a href="{{ frontpage.block2_image.url }}">
+            <a href="{{ frontpage.block2_image.url }}" data-lightbox="frontpage">
               {% thumbnail frontpage.block2_image "350" as img %}
                 <img src="{{ img.url }}" alt="Senne Block Image 2"
                      class="img-fluid material-card material-card-2">
@@ -115,13 +115,12 @@
         </div>
         <div class="col-4">
           <p>
-            <a href="{{ frontpage.block3_image.url }}">
+            <a href="{{ frontpage.block3_image.url }}" data-lightbox="frontpage">
               {% thumbnail frontpage.block3_image "350" as img %}
                 <img src="{{ img.url }}" alt="Senne Block Image 3"
                      class="img-fluid material-card material-card-2">
               {% endthumbnail %}
             </a>
-
           </p>
         </div>
       </div>
