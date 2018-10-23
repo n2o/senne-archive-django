@@ -98,6 +98,11 @@
               Login
             {% endif %}
           </a>
+          {% if user.is_staff %}
+            <a class="btn btn-link" href="http://docs.sennearchiv.de">
+              Dokumentation
+            </a>
+          {% endif %}
           <a class="btn btn-link" href="{% url "pages" url="datenschutz" %}">Datenschutz</a>
           <a class="btn btn-link" href="{% url "pages" url="impressum" %}">Impressum</a>
         </div>
