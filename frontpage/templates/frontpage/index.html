@@ -48,13 +48,13 @@
       </div>
       <br>
       <div class="row">
-        <div class="col-8">
+        <div class="col-12 col-lg-8">
           <span class="frontpage-content">
             {{ frontpage.block1_content|markdown }}
           </span>
         </div>
-        <div class="col-4">
-          <p>
+        <div class="col-12 col-lg-4">
+          <p class="text-center">
             <a href="{% url "archive:index" %}">
               {% thumbnail frontpage.block1_image "350" as img %}
                 <img src="{{ img.url }}" alt="Senne Block Image 1"
@@ -78,8 +78,8 @@
       </div>
       <br>
       <div class="row">
-        <div class="col-4">
-          <p>
+        <div class="col-12 col-lg-4">
+          <p class="text-center">
             <a href="{{ frontpage.block2_image.url }}" data-lightbox="frontpage">
               {% thumbnail frontpage.block2_image "350" as img %}
                 <img src="{{ img.url }}" alt="Senne Block Image 2"
@@ -88,7 +88,7 @@
             </a>
           </p>
         </div>
-        <div class="col-8">
+        <div class="col-12 col-lg-8">
           <span class="frontpage-content">
             {{ frontpage.block2_content|markdown }}
           </span>
@@ -108,13 +108,13 @@
       </div>
       <br>
       <div class="row">
-        <div class="col-8">
+        <div class="col-12 col-lg-8">
           <span class="frontpage-content">
             {{ frontpage.block3_content|markdown }}
           </span>
         </div>
-        <div class="col-4">
-          <p>
+        <div class="col-12 col-lg-4">
+          <p class="text-center">
             <a href="{{ frontpage.block3_image.url }}" data-lightbox="frontpage">
               {% thumbnail frontpage.block3_image "350" as img %}
                 <img src="{{ img.url }}" alt="Senne Block Image 3"
