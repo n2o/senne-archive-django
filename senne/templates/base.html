@@ -10,6 +10,7 @@
   <meta name="author" content="">
 
   <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'lightbox2/dist/css/lightbox.min.css' %}">
   <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
 
@@ -106,6 +107,16 @@
 </footer>
 
 <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'lightbox2/dist/js/lightbox-plus-jquery.min.js' %}"></script>
+
+<script>
+    (function ($) {
+        // Disable right click on images
+        $(document).on('contextmenu', 'img', function () {
+            return false;
+        })
+    })(jQuery);
+</script>
 
 {% block after_content %}{% endblock %}
 
