@@ -94,7 +94,7 @@
         <div class="card-text">
           <div class="row">
             <div class="col-4 text-center">
-              <a href="{{ item.image1.url }}">
+              <a href="{{ item.image1.url }}" data-lightbox="archive">
                 {% thumbnail item.image1 "350" as img %}
                   <img src="{{ img.url }}" alt="Senne Detail Image 1"
                        class="img-fluid material-card material-card-2">
@@ -103,7 +103,7 @@
             </div>
             {% if item.image2 %}
               <div class="col-4 text-center">
-                <a href="{{ item.image2.url }}">
+                <a href="{{ item.image2.url }}" data-lightbox="archive">
                   {% thumbnail item.image2 "350" as img %}
                     <img src="{{ img.url }}" alt="Senne Detail Image 2"
                          class="img-fluid material-card material-card-2">
@@ -113,7 +113,7 @@
             {% endif %}
             {% if item.image3 %}
               <div class="col-4 text-center">
-                <a href="{{ item.image3.url }}">
+                <a href="{{ item.image3.url }}" data-lightbox="archive">
                   {% thumbnail item.image3 "350" as img %}
                     <img src="{{ img.url }}" alt="Senne Detail Image 3"
                          class="img-fluid material-card material-card-2">
