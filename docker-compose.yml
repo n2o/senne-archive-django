@@ -18,7 +18,9 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:sennearchiv.de"
+      - "traefik.frontend.rule=Host:sennearchiv.de,www.sennearchiv.de"
+      - "traefik.frontend.redirect.regex=^https?://www.sennearchiv.de/(.*)"
+      - "traefik.frontend.redirect.replacement=https://sennearchiv.de/$${1}"
       - "traefik.port=80"
       - "traefik.docker.network=web"
     networks:
