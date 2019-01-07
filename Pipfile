@@ -4,17 +4,19 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-markdown = "==2.6.11"
-pillow = "==5.2.0"
-pytz = "==2018.5"
+django = "==2.1.5"
+markdown = "==3.0.1"
+pillow = "==5.4.1"
+pytz = "==2018.9"
 django-reversion = "*"
 django-pagedown = "*"
 django-markdown-deux = "*"
 gunicorn = "*"
 sorl-thumbnail = "*"
-sphinx = "*"
-sphinx-rtd-theme = "*"
+pygments = "==2.3.1"
+astroid = "==2.1.0"
+pylint = "==2.2.2"
+setuptools = "==40.6.3"
 
 [dev-packages]
 pylint = "*"
