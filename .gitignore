@@ -87,7 +87,6 @@ node_modules/
 
 *.css
 *.css.map
-migrations
 media/
 static/
 *.bak
